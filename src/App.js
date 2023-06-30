@@ -3,6 +3,7 @@ import Home from './components/Home';
 
 
 import './index.css'
+import Blogs from './components/Blogs';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
     <br></br> 
     
     <Home/>
+
+    <Blogs/>
     
     </div>
     
