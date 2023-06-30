@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Specific from './Specific'
 
 
 const Blogs = () => {
@@ -38,7 +39,7 @@ const Blogs = () => {
             Blogs.map((blog)=>
             (
                 
-                <BlogDisplay className='box-content items-center w-7/12 px-2 py-4 text-center border-4 border-red-600 border-double shadow border-spashadow-2xl'>
+                <BlogDisplay key={blog.postID}  className='box-content items-center w-7/12 px-2 py-4 text-center border-4 border-red-600 border-double shadow border-spashadow-2xl'>
                     <h1 className='text-2xl font-extrabold text-red-500 font-extra font-poppins'>{blog.title}</h1>
                     <h2 className='text-4xl text-red-950 font-tangerine'>Author: {blog.author}</h2>
                     <br></br>
@@ -48,6 +49,7 @@ const Blogs = () => {
                 </BlogDisplay>
             ))
         }
+         <Specific Blogs={Blogs} SecondTitle="Displaying All the Blogs Again"/> 
     </BlogContent>
   )
 }
