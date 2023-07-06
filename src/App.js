@@ -1,8 +1,8 @@
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import './index.css'
-import Blogs from './components/Blogs';
-import Specific from './components/Specific';
+import Blogs from './components/BlogLogic';
+import BlogList from './components/BlogList';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
 
     <Blogs/>
 
-    <Specific/>
+    <BlogList/>
     
     </div>
     

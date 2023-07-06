@@ -35,6 +35,7 @@ const title = "Site is from Scratch"
 }
 
 const HomeContent = styled.div``
-const ButtonCenter = styled.div``
+
+//const ButtonCenter = styled.div``
 
 export default Home
