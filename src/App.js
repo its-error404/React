@@ -13,7 +13,6 @@ function App() {
     
     <br></br> 
     
-    <Home/>
 
     <Blogs/>
 

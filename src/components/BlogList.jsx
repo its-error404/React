@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import BlogLogic from './BlogLogic'
 
+
 const BlogList = () => {
-  const Blogs = 
+  const [Blogs, setBlogs] = useState(
   [
     {
       "postID": 1,
@@ -14,7 +15,7 @@ const BlogList = () => {
     {
       "postID": 2,
       "title": "First Post",
-      "body": "The article below said 'Psychodwarf' was Beppe Grillo's nickname for 'Mario Mastella, leader of the Popular-UDEUR centre-right party', but it's actually his nickname for Silvio Berlusconi. Mastella's first name is Clemente and Popular-UDEUR was part of Romano Prodi's centre-left coalition. And Peter Rojas, not Ryan Block, founded Engadget and co-founded Gizmodo. Apologies.",
+      "body": "The article below said 'Psychodwarf' was Beppe Grillo's nickname for 'Mario Mastella, leader of the Popular-UDEUR centre-right party', but it's actually his nickname for Silvio Berlusconi. Mastella's first name is Clemente and Popular-UDEUR was part of Romano Prodi's centre-left coalition. And Peter Rojas, not Ryan Block, founded Engadget and co-founded Gizmodo. Apologies",
       "author": "Tech Monkey"
     },
     {
@@ -29,14 +30,24 @@ const BlogList = () => {
       "body": "Bloggers saw themselves as gadflies, pricking the arrogance of established elites from their home computers, in their pyjamas, late into the night. So when, in 2005, Huffington decided to mobilise her fortune and media connections to create, from scratch, a flagship liberal blog she was roundly derided. Who, spluttered the original bloggerati, did she think she was?",
       "author": "Karthik"
     }
-  ];
+  ]);
 
-  const stitle = "Hello Posts";
+  useEffect(()=>
+{
+    console.log("RAN")
+},[]);
+
+  const DeleteBlog = (id)=>
+{
+    const NewBlogs = Blogs.filter((blog)=>blog.postID!==id)
+    setBlogs(NewBlogs)
+}
 
   return (
     <div>
 
-      <BlogLogic Blogs={Blogs} stitle={stitle} />
+      <BlogLogic Blogs={Blogs} stitle="Thank you for Visiting the Page. Below, you can find all the Blogs " setBlogs={DeleteBlog} />
+      <BlogLogic Blogs={Blogs.filter((blog)=>blog.author==="Karthik")} stitle="Karthik's Blogs are Displayed Below" setBlogs={DeleteBlog}/>
 
     </div>
   )
