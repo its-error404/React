@@ -1,56 +1,107 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import BlogLogic from './BlogLogic'
-
+import React, { useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
+import BlogLogic from './BlogLogic';
 
 const BlogList = () => {
-  const [Blogs, setBlogs] = useState(
-  [
-    {
-      "postID": 1,
-      "title": "Welcome Post",
-      "body": "From Prince Harry in Afghanistan to Tom Cruise ranting about Scientology and footage from the Burmese uprising, blogging has never been bigger. It can help elect presidents and take down attorneys general while simultaneously celebrating the minutiae of our everyday obsessions.",
-      "author": "Vampy"
-    },
-    {
-      "postID": 2,
-      "title": "First Post",
-      "body": "The article below said 'Psychodwarf' was Beppe Grillo's nickname for 'Mario Mastella, leader of the Popular-UDEUR centre-right party', but it's actually his nickname for Silvio Berlusconi. Mastella's first name is Clemente and Popular-UDEUR was part of Romano Prodi's centre-left coalition. And Peter Rojas, not Ryan Block, founded Engadget and co-founded Gizmodo. Apologies",
-      "author": "Tech Monkey"
-    },
-    {
-      "postID": 3,
-      "title": "Last Post",
-      "body": "The history of political blogging might usefully be divided into the periods pre- and post-Huffington. Before the millionaire socialite Arianna Huffington decided to get in on the act, bloggers operated in a spirit of underdog solidarity. They hated the mainstream media - and the feeling was mutual.",
-      "author": "Karthik"
-    },
-    {
-      "postID": 4,
-      "title": "Final Post",
-      "body": "Bloggers saw themselves as gadflies, pricking the arrogance of established elites from their home computers, in their pyjamas, late into the night. So when, in 2005, Huffington decided to mobilise her fortune and media connections to create, from scratch, a flagship liberal blog she was roundly derided. Who, spluttered the original bloggerati, did she think she was?",
-      "author": "Karthik"
-    }
-  ]);
+  
+  const [Loading, SetLoading] = useState(true)
+  const [Blogs, setBlogs] = useState([]);
+  
 
-  useEffect(()=>
-{
-    console.log("RAN")
-},[]);
+  useEffect(() => 
+  {
+    setTimeout(() => 
+    {  
+      fetch("http://localhost:8000/blogs")
+      
+        .then (response => 
+          {
+            if(!response.ok)
+            {
+              throw Error("Could not get the data")
+            }
+          return response.json()
+          }
+          )
+          
+        .then((data) => 
+        {
+          setBlogs(data);
+          SetLoading(false);
+        })
+        
+        .catch((err)=>
+        {
+          console.log(err.message)
+        })
+        
+    }, 1000);
+  }, []);
 
-  const DeleteBlog = (id)=>
-{
-    const NewBlogs = Blogs.filter((blog)=>blog.postID!==id)
-    setBlogs(NewBlogs)
-}
+  const HideBlog = (id) => {
+    const newBlogs = Blogs.filter((blog) => blog.postID !== id);
+    setBlogs(newBlogs);
+  };
+
+ const uniqueAuthors = Array.from(new Set(Blogs.map((blog)=>blog.author)))
 
   return (
-    <div>
-
-      <BlogLogic Blogs={Blogs} stitle="Thank you for Visiting the Page. Below, you can find all the Blogs " setBlogs={DeleteBlog} />
-      <BlogLogic Blogs={Blogs.filter((blog)=>blog.author==="Karthik")} stitle="Karthik's Blogs are Displayed Below" setBlogs={DeleteBlog}/>
-
+    <div className='flex flex-col items-center'>
+      {Loading && 
+      (
+        <LoaderContainer>
+          <Loader />
+          <Text className='text-xl text-center text-red-600 mt-52'>Loading the Blogs for you...</Text>
+        </LoaderContainer>
+      )}
+      {Blogs && 
+      (
+        <>
+          <BlogLogic Blogs={Blogs} stitle="Thank you for Visiting the Page. Below, you can find all the Blogs" HideBlog={HideBlog} />
+          
+          {uniqueAuthors.map(author => 
+          
+          (
+            <BlogLogic
+              key={author}
+              Blogs={Blogs.filter(blog => blog.author === author)}
+              stitle={`${author}'s Blogs are Displayed Below`}
+              HideBlog={HideBlog}
+            />
+          ))}
+          
+        </>
+      )}
+      
     </div>
-  )
-}
+    
+  );
+  
+};
 
-export default BlogList
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+`;
+
+const Loader = styled.div`
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  border-top: 16px solid blue;
+  border-bottom: 16px solid yellow;
+  border-left: 16px solid red;
+  border-radius: 50%;
+  animation: ${spin} 2s infinite linear;
+`;
+
+const Text = styled.div``;
+
+export default BlogList;

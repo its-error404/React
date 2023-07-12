@@ -7,8 +7,7 @@ const Navbar = () => {
     <Navigation className="flex w-full px-6 py-4 text-center bg-white shadow-2xl">
       <div className="flex items-center justify-between w-full mr-10 ">
         <div className="mb-2">
-          <a className="text-2xl no-underline hover:text-blue-500" href="/home">
-            {title}
+          <a className="text-2xl no-underline hover:text-blue-500" href="/home">{title}
           </a>
         </div>
         <div className="space-x-4">
