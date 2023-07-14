@@ -1,25 +1,36 @@
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import './index.css'
-import Blogs from './components/BlogLogic';
-import BlogList from './components/BlogList';
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import "./index.css";
+
+//import Blogs from "./components/BlogLogic";
+
+import BlogList from "./components/BlogList";
+import Form from "./components/Form";
+//import {Navbar, Home, Blogs, BlogList} from "./components"
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    
-    <div className="App">
-   
-    <Navbar/> 
-    
-    <br></br> 
-    
+    <Router>
+      <div className="App">
+        <Navbar />
 
-    <Blogs/>
+        <div className="PageContent">
+          <Routes>
+            
+            <Route path="/" element={<BlogList/>}/>
+            <Route path="/home" element={<Home />}/> 
+            <Route path="/Form" element={<Form/>}/>
+            
+          </Routes>
+        </div>
+      </div>
 
-    <BlogList/>
+        {/* <Blogs />
+        <BlogList /> */}
     
-    </div>
-    
+    </Router>
   );
-  }
+}
 export default App;

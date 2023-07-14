@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
+//import React, { useState, useEffect } from 'react';
+
 import styled, { keyframes } from 'styled-components';
 import BlogLogic from './BlogLogic';
 import useFetch from './useFetch';
 
 
-const BlogList = () => {
+const BlogList = () => 
 
-  const useEffect = 
+{
+
+const {Data:Blogs,Loading,error,setData} = useFetch('http://localhost:8000/blogs')
   
-  const HideBlog = (id) => {
+const HideBlog = (id) => 
+{
     const newBlogs = Blogs.filter((blog) => blog.postID !== id);
     setData(newBlogs);
   };
 
- const AllAuthors = Array.from(new Set(Blogs.map((blog)=>blog.author)))
+const AllAuthors = Array.from(new Set(Blogs.map((blog)=>blog.author)))
 
   return (
     <div className='flex flex-col items-center'>

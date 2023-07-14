@@ -27,15 +27,10 @@ const title = "Site is from Scratch"
   <button className="pt-4 pb-4 pl-4 pr-4 font-bold text-white bg-blue-700 rounded-full" onClick={()=>SetNumber(Number+1)}>Increase Number</button>
   <p className="pt-4 pb-4 text-lg font-bold text-center texfont-extrabold">The Number is {Number}</p>
   <button className="pt-4 pb-4 pl-4 pr-4 font-bold text-white bg-blue-700 rounded-full"onClick={()=>SetNumber(Number-1)}>Decrease Number</button>
-</div>
-
-    
+</div>  
     </HomeContent>
   )
 }
 
 const HomeContent = styled.div``
-
-//const ButtonCenter = styled.div``
-
 export default Home

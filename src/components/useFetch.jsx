@@ -1,49 +1,56 @@
 import { useState,useEffect } from "react";
 
 const useFetch = (url) =>
-
 {
+    const [Loading, SetLoading] = useState(true)
+    const [Data, setData] = useState([]);
+    const [error, SetError] = useState(null)
 
-const [Loading, SetLoading] = useState(true)
-const [Data, setData] = useState([]);
-const [error, SetError] = useState(null)
-
-    useEffect(() => 
-  {
-    setTimeout(() => 
-    {  
-      fetch(url)
-      
-        .then (response => 
-          {
-            if(!response.ok)
-            {
-              throw Error("Could not get the data")
-            }
-          return response.json()
-          }
-          )
+      useEffect(() => 
+        {
+          const AbortControllerMethod = AbortController();
+          setTimeout(() => 
+            {  
+                //fetch(url)
+                fetch(url, {signal: AbortControllerMethod.signal})
+                
+                .then (response => 
+                    {
+                        if(!response.ok)
+                           {
+                              throw Error("Could not get the data")
+                            }
+                        return response.json()
+                     }
+                       )
+                .then((data) => 
+                     {
+                        setData(data);
+                        SetLoading(false);
+                        SetError(null)
+                     }
+                      )
           
-        .then((data) => 
-        {
-          setData(data);
-          SetLoading(false);
-          //console.log(SetError)
-          SetError(null)
-        })
-        
-        .catch((err)=>
-        {
-          SetError(err.message)
-        })
-        
-    }, 1000);
-  }, [url]);
+                .catch((err) =>
+                    {
+                        if (err.name === 'AbortError')
+                            {
+                                console.log("Abortttt")
+                            }
+                        else
+                            {
+                                SetLoading(false)
+                                SetError(err.message)
+                            }
+                    }
+                      )
+          
+            }, 1000);
 
-  return {Data,Loading,error}
+            return ()=> AbortControllerMethod.abort();
+          }, [url]);
 
+  return {Data,Loading,error,setData}
 }
-
-
 
 export default useFetch;
