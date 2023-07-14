@@ -1,52 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import BlogLogic from './BlogLogic';
+import useFetch from './useFetch';
+
 
 const BlogList = () => {
-  
-  const [Loading, SetLoading] = useState(true)
-  const [Blogs, setBlogs] = useState([]);
-  
 
-  useEffect(() => 
-  {
-    setTimeout(() => 
-    {  
-      fetch("http://localhost:8000/blogs")
-      
-        .then (response => 
-          {
-            if(!response.ok)
-            {
-              throw Error("Could not get the data")
-            }
-          return response.json()
-          }
-          )
-          
-        .then((data) => 
-        {
-          setBlogs(data);
-          SetLoading(false);
-        })
-        
-        .catch((err)=>
-        {
-          console.log(err.message)
-        })
-        
-    }, 1000);
-  }, []);
-
+  const useEffect = 
+  
   const HideBlog = (id) => {
     const newBlogs = Blogs.filter((blog) => blog.postID !== id);
-    setBlogs(newBlogs);
+    setData(newBlogs);
   };
 
- const uniqueAuthors = Array.from(new Set(Blogs.map((blog)=>blog.author)))
+ const AllAuthors = Array.from(new Set(Blogs.map((blog)=>blog.author)))
 
   return (
     <div className='flex flex-col items-center'>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       {Loading && 
       (
         <LoaderContainer>
@@ -59,12 +30,12 @@ const BlogList = () => {
         <>
           <BlogLogic Blogs={Blogs} stitle="Thank you for Visiting the Page. Below, you can find all the Blogs" HideBlog={HideBlog} />
           
-          {uniqueAuthors.map(author => 
+          {AllAuthors.map(author => 
           
           (
             <BlogLogic
               key={author}
-              Blogs={Blogs.filter(blog => blog.author === author)}
+              Blogs={Blogs.filter((blog) => blog.author === author)}
               stitle={`${author}'s Blogs are Displayed Below`}
               HideBlog={HideBlog}
             />
@@ -80,8 +51,14 @@ const BlogList = () => {
 };
 
 const spin = keyframes`
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% 
+  { 
+    transform: rotate(0deg);
+   }
+  100% 
+  {
+     transform: rotate(360deg); 
+  }
 `;
 
 const LoaderContainer = styled.div`
@@ -102,6 +79,11 @@ const Loader = styled.div`
   animation: ${spin} 2s infinite linear;
 `;
 
+const ErrorMessage = styled.div`
+  color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('https://i.imgur.com/GnyDvKN.png') no-repeat cover; 
+`
 const Text = styled.div``;
 
 export default BlogList;
