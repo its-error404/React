@@ -12,6 +12,7 @@ module.exports = {
         'poppins' : ['Poppins'],
         'tangerine': ['Tangerine'],
         'josefin-italic-500': ['Josefin Sans','sans-serif','italic'],
+        'tektur-regular': ['Tektur', 'cursive']
         
       },
     },

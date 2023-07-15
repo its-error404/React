@@ -8,7 +8,7 @@ const useFetch = (url) =>
 
       useEffect(() => 
         {
-          const AbortControllerMethod = AbortController();
+          const AbortControllerMethod = new AbortController();
           setTimeout(() => 
             {  
                 //fetch(url)
