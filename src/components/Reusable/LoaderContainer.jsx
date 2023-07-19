@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, {keyframes} from 'styled-components'
 
 const LoaderContainer = ({LoadingText, }) => {
@@ -6,7 +5,7 @@ const LoaderContainer = ({LoadingText, }) => {
   return (
    <Load>
           <Loader />
-          <Text className='text-xl text-center text-red-600 mt-52'>{LoadingText}</Text>
+          <Text className='text-xl text-red-600 mt-52'>{LoadingText}</Text>
     </Load>
   )
 }
@@ -31,6 +30,7 @@ const Loader = styled.div`
   border-left: 16px solid red;
   border-radius: 50%;
   animation: ${spin} 2s infinite linear;
+  padding-right: 40px;
 `;
 const Text = styled.div``
 

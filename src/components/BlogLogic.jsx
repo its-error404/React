@@ -21,6 +21,7 @@ if(!Blogs || !Array.isArray(Blogs))
                 Blogs.map((blog) =>
                     (
                         <BlogDisplay key={blog.postID} className='box-content items-center justify-center w-7/12 px-5 py-4 mt-4 text-center border-4 border-red-600 border-double shadow border-spashadow-2xl'>
+
                             {/* <Link to={`/blogs/${blog.postID}`}> */}
                                 <h1 className='text-2xl font-extrabold text-red-500 font-extra font-poppins'>{blog.title}</h1>
                                 <h2 className='text-4xl text-red-950 font-tangerine'>Author: {blog.author}</h2>
@@ -28,7 +29,7 @@ if(!Blogs || !Array.isArray(Blogs))
                                 {/* <br /> */}
                                 {/* <h1 className='text-lg font-bold text-left font-poppins'>Content of the Blog: </h1> */}
                                 {/* <br /> */}
-                                <p className='text-left font-poppins'>{blog.body}</p>
+                                {/* <p className='text-left font-poppins'>{blog.body}</p> */}
                                     <Link to={`/blogs/${blog.postID}`}>
                                         <button className='px-2 py-2 mt-4 mr-6 font-bold text-white bg-blue-500 rounded shadow-lg hover:bg-rounded-sm'>Go to the Blog</button>
                                     </Link>

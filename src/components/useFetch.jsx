@@ -8,11 +8,11 @@ const useFetch = (url) =>
 
       useEffect(() => 
         {
-          const AbortControllerMethod = new AbortController();
+          //const AbortControllerMethod = new AbortController();
           setTimeout(() => 
             {  
-                //fetch(url)
-                fetch(url, {signal: AbortControllerMethod.signal})
+                fetch(url)
+                //fetch(url, {signal: AbortControllerMethod.signal})
                 
                 .then (response => 
                     {
@@ -47,7 +47,7 @@ const useFetch = (url) =>
           
             }, 1000);
 
-            return ()=> AbortControllerMethod.abort();
+            //return ()=> AbortControllerMethod.abort();
           }, [url]);
 
   return {Data,Loading,error,setData}

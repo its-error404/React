@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import useFetch from '../useFetch'
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ErrorMessage}) => {
     const {error} =useFetch()
   return (
-    <ErrorText/>
+    <ErrorText>ErrorMessage = {error}</ErrorText>
   )
 }
 

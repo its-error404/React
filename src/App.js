@@ -23,7 +23,7 @@ function App() {
             <Route path="/" element={<BlogList/>}/>
             <Route path="/home" element={<Home />}/> 
             <Route path="/Form" element={<Form/>}/>
-            <Route path="/blogs/:postID" element={<BlogDetails/>}/>
+            <Route path="/blogs/:postIDuser" element={<BlogDetails/>}/>
             
           </Routes>
         </div>
