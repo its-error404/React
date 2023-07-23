@@ -12,7 +12,7 @@ const Navbar = () => {
           </a>
         </div>
         <div>
-          <Link className="text-2xl no-underline hover:text-blue-500" to="/form">Create a New Blog Post</Link>
+          <Link className="text-2xl no-underline hover:text-blue-500" to="/AddBlog">Create a New Blog Post</Link>
         </div>
         <div className="space-x-4">
           <a

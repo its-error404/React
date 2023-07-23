@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
 
@@ -27,6 +28,7 @@ const title = "Site is from Scratch"
   <button className="pt-4 pb-4 pl-4 pr-4 font-bold text-white bg-blue-700 rounded-full" onClick={()=>SetNumber(Number+1)}>Increase Number</button>
   <p className="pt-4 pb-4 text-lg font-bold text-center texfont-extrabold">The Number is {Number}</p>
   <button className="pt-4 pb-4 pl-4 pr-4 font-bold text-white bg-blue-700 rounded-full"onClick={()=>SetNumber(Number-1)}>Decrease Number</button>
+  <Link className="pt-4 pb-4 pl-4 pr-4 mt-4 text-2xl font-bold text-white no-underline bg-green-700 rounded-full hover:text-yellow-300" to="/Blogs">Go to the Blogs Page</Link>
 </div>  
     </HomeContent>
   )

@@ -1,6 +1,6 @@
 import styled, {keyframes} from 'styled-components'
 
-const LoaderContainer = ({LoadingText, }) => {
+const LoaderContainer = ({ LoadingText }) => {
     
   return (
    <Load>
@@ -22,7 +22,7 @@ const spin = keyframes`
 `;
 
 const Loader = styled.div`
-  display: inline-block;
+  ${'' /* display: block; */}
   width: 120px;
   height: 120px;
   border-top: 16px solid blue;
@@ -30,15 +30,21 @@ const Loader = styled.div`
   border-left: 16px solid red;
   border-radius: 50%;
   animation: ${spin} 2s infinite linear;
-  padding-right: 40px;
+  ${'' /* padding-right: 40px; */}
 `;
-const Text = styled.div``
+const Text = styled.div`
+  margin-top: 15px;
+`
 
 const Load = styled.div`
   display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
   justify-content: center;
   align-items: center;
   height: 80vh;
+  ${'' /* background-color: pink; */}
+  align-items: center;
 `;
 
 export default LoaderContainer

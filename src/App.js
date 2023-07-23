@@ -20,10 +20,12 @@ function App() {
         <div className="PageContent">
           <Routes>
             
-            <Route path="/" element={<BlogList/>}/>
-            <Route path="/home" element={<Home />}/> 
-            <Route path="/Form" element={<Form/>}/>
+            {/* <Route path="/" element={<BlogList/>}/> */}
+            {/* <Route path="/home" element={<Home />}/>  */}
+            <Route path="/" element={<Home />}/>
+            <Route path="/AddBLog" element={<Form/>}/>
             <Route path="/blogs/:postIDuser" element={<BlogDetails/>}/>
+            <Route path="/blogs" element={<BlogList/>}/>
             
           </Routes>
         </div>
